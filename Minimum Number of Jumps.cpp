@@ -1,5 +1,4 @@
 //https://practice.geeksforgeeks.org/problems/minimum-number-of-jumps-1587115620/1
-// Not solved
 //{ Driver Code Starts
 #include<bits/stdc++.h>
 using namespace std;
@@ -12,19 +11,34 @@ class Solution{
   public:
     int minJumps(int arr[], int n)
     {
-        int sum=0,temp=0,c=0;
-        for(int i=0;i<n;)
+        int i,j,k,l;
+        j=arr[0];
+        l=arr[0];
+        if(n==1 || n==0)
+        return 0;
+        if(j==0)
+        return -1;
+        k=1;
+        for(i=1;i<n;i++)
         {
-            c++;
-            if(arr[i]!=0)
-            i=i+arr[i];
-            else
+            l--;
+            if(arr[i]+i>j)
             {
-                c=-1;
-                break;
+                j = arr[i]+i;
+            }
+            if(l<=0)
+            {
+                if(i==n-1)
+                    break;
+                k++;
+                l = j-i;
+                if(l<=0)
+                {
+                    return -1;
+                }
             }
         }
-        return c;
+        return k;
     }
 };
 
